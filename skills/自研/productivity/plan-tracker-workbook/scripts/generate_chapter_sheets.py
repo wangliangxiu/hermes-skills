@@ -32,6 +32,7 @@
 不要没看一眼就交付。
 """
 import os, sys, json, shutil
+from copy import copy
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.worksheet.datavalidation import DataValidation
@@ -90,9 +91,9 @@ def build_usage(wb, subject):
         ws.cell(r, 1, a)
         ws.cell(r, 2, b)
         ws.cell(r, 3, c3)
-        style_cell(ws.cell(r, 1), F_BODY, None, CEN)
-        style_cell(ws.cell(r, 2), F_BODY, None, LEFT)
-        style_cell(ws.cell(r, 3), F_BODY, None, CEN)
+        # 正文一律左对齐（表头/标题才居中）——全表统一，不要一列居中一列左对齐
+        for i in (1, 2, 3):
+            style_cell(ws.cell(r, i), F_BODY, None, LEFT)
     ws.column_dimensions['A'].width = 10
     ws.column_dimensions['B'].width = 74
     ws.column_dimensions['C'].width = 18
@@ -145,9 +146,9 @@ def build_chapter(wb, subject, ch):
         r += 1
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
         c = ws.cell(r, 1, '易错提醒（考前重点看这几条）')
-        c.font = F_HDR
-        c.fill = NAVY
-        c.alignment = CEN
+        c.font = F_SUB        # 与上面的“学习顺序”一致：都用小标题样式、左对齐
+        c.fill = LBLUE
+        c.alignment = LEFT
         c.border = BORDER
         r += 1
         for i, tp in enumerate(ch['traps'], 1):
@@ -192,28 +193,31 @@ def add_index_links(path, sheet_name, owner, code_col=2):
             cell = ws.cell(r, col, sheet_title)
             cell.hyperlink = "%s#'%s'!A1" % (wbf, sheet_title)
             cell.font = F_LINK
-            cell.alignment = CEN
+            cell.alignment = LEFT      # 与同类的“学习内容”列一致（文本列左对齐）
             cell.border = BORDER
             seen.add(code)
             n += 1
-    # 补齐总表里没有的章号
+    # 补齐总表里没有的章号（样式必须继承上一行，不要自己另设对齐）
     r = ws.max_row + 1
     while r > 2 and not ws.cell(r - 1, code_col).value:
         r -= 1
+    prev = r - 1
     for code, (wbf, sheet_title, score) in owner.items():
         if code in seen:
             continue
+        for i in range(1, col + 1):
+            if ws.cell(prev, i).value is not None or i != col:
+                ws.cell(r, i)._style = copy(ws.cell(prev, i)._style)
         ws.cell(r, 1, wbf.split('-')[-1].split('.')[0])   # 阶段列：数学一/英语一/…
         ws.cell(r, code_col, sheet_title)
         ws.cell(r, code_col + 2, score or '')
         cell = ws.cell(r, col, sheet_title)
         cell.hyperlink = "%s#'%s'!A1" % (wbf, sheet_title)
-        for i in range(1, col + 1):
-            cc = ws.cell(r, i)
-            cc.border = BORDER
-            cc.alignment = CEN if i != code_col + 2 else LEFT
-            cc.font = F_LINK if i == col else F_BODY
+        cell.font = F_LINK
+        cell.alignment = LEFT        # 文本列左对齐（与“学习内容”列一致）
         n += 1
+        prev = r
+        r += 1
     wb.save(path)
     return n
 

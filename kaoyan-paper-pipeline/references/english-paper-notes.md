@@ -54,3 +54,31 @@
   2022 年的解析。不可核实的文件单独放“待核实”，不参与统计、也不作命题依据。
 - 扫描版 PDF（无文字层）抽不出文本，标注为“仅图片，未纳入统计”，不要硬当文本用。
 - 中文文件名的 GitHub 下载链接要 `urllib.parse.quote(download_url, safe=':/?=&%')`，否则报 ASCII 编码错。
+
+## 实测的排版与核查流程（两套英语卷实战）
+
+**排版脚本**（可直接复用）：`桌面\考研\考研英语\出卷脚本\build_e2.py`（配 content_en2.py 的键名）、
+`_e3\build_e3.py`（配 e3_content.py 的键名）。两套的模块键名不一样，不能直接互换，照数据形状改写：
+- 完形：`USOE_ITEMS` = list[{n, options, correct(下标), type, expl}]；另一种写法 `CLOZE_ITEMS` = dict{n: (正确词, [干扰项], 正确位置)}，排版时用 `place()` 把正确项搬到目标位置。
+- 阅读：`READING` = list[{title, topic, paras, questions:[{n, type, q, options, correct, expl}]}]。
+- Part B：`PARTB_BODY` 里 `('text', 正文)` 是引言段，`('blank', 41, 段落正文)` 是待选标题的段落——**正文就在第三元里，别以为是空的**。
+- Part C：`PARTC_PARAS` = list[list[(tag, 文本)]]，tag='u' 的片段加下划线。
+
+**柱状图用 pymupdf 现画（不要截图）**：fitz.open() 新建页 → insert_text/draw_rect/draw_line →
+get_pixmap(matrix=Matrix(3,3)).save(png) → docx 里 add_picture(width=Cm(15.5))。
+坑：① 标题用 len(标题)*1.75 估宽会偏，必须用 `fitz.get_text_length(s, fontsize=…)` 才真居中；
+② 图例不能和标题同一水平高度（实测真重叠了）——标题单独一行居中，图例居中放在标题下、绘图区上方；
+③ 纵轴名用 `rotate=90` 写。
+
+**导出 PDF**：用 Word COM（ps1 必须 UTF-8 **带 BOM**，否则中文路径乱码）。
+坑：Word 导出后可能残留 WINWORD.EXE 占着旧 PDF，再导报 `SaveAs` COMException —— 改导到别的
+文件名，验证后再 `cp -f` 覆盖；**不要直接 taskkill winword**，用户可能开着别的文档没存。
+
+**核查脚本**：
+- 对答案：内容模块里的答案键 ↔ 卷末排版出来的【答案】行 ↔ 解析小标题，三处逐题对齐（“模块↔解析”应 0 不一致）。
+  卷末格式有三种写法（`1.B`、`21. 【答案】B`、`1 B`），正则要全兼容，否则会报一堆假不一致。
+- 扫字面 `None`：能抓漏渲染的空值；**但英文原文里的 “None of this…” 是正常英语，别当 bug 改掉**。
+- 分布：完形与阅读都数 A/B/C/D（目标 5/5/5/5）。
+
+**页数基准**：完整一套英语卷 ≈ 10—11 页（1 页卷头+完形题组，中间四篇阅读，Part B/C，
+Section III 写作+图表，最后 3—4 页答案解析）。

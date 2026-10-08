@@ -1,0 +1,22 @@
+# 插图风格：📷 写实摄影
+# 适合：新闻、纪实、自然类内容
+
+name: "📷 写实摄影"
+description: "AI 摄影风格，真实感强，适合真实场景展示"
+preset: true
+
+prompt_template:
+  style: "photorealistic, professional photography, high resolution, editorial quality"
+  elements: "natural lighting, realistic textures, lifelike details, shallow depth of field"
+  background: "natural environment, soft bokeh, contextual background"
+  color_scheme: "natural tones, warm or cool lighting, realistic color rendition"
+  composition: "rule of thirds, professional photography composition, cinematic feel"
+  negative: "illustration, cartoon, painting, drawings, artificial looking, low quality"
+
+sizes:
+  illustration:
+    width: 1024
+    height: 768
+  cover:
+    width: 900
+    height: 383

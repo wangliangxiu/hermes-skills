@@ -1,0 +1,22 @@
+# 插图风格：➖ 极简线条
+# 适合：科技、效率、商业类内容
+
+name: "➖ 极简线条"
+description: "极简单线画风格，大量留白，高级感"
+preset: true
+
+prompt_template:
+  style: "single-line drawing, minimalist illustration, clean lines, white background"
+  elements: "simple geometric shapes, thin strokes, monoline style, vector art"
+  background: "pure white, maximum negative space, clean and airy"
+  color_scheme: "black line on white, occasional accent color (blue or orange)"
+  composition: "centered or off-center, generous white space, elegant simplicity"
+  negative: "complex illustration, fill patterns, gradients, messy background, cartoon style"
+
+sizes:
+  illustration:
+    width: 1024
+    height: 768
+  cover:
+    width: 900
+    height: 383

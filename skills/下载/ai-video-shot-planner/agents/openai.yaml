@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Video Shot Planner"
+  short_description: "把文案拆成镜头表并分配 avatar/B-roll"
+  default_prompt: "Use $ai-video-shot-planner to estimate duration, calculate shot count, and split my script into avatar and b-roll shots."
+
+policy:
+  allow_implicit_invocation: true

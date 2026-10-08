@@ -1,0 +1,22 @@
+# 插图风格：🖊️ 手绘草图
+# 适合：生活分享、随笔、情感类内容
+
+name: "🖊️ 手绘草图"
+description: "纯手绘线条风格，简单素描效果，亲切自然"
+preset: true
+
+prompt_template:
+  style: "pencil sketch, hand-drawn illustration, line art, black and white with subtle shading"
+  elements: "simple sketch lines, minimalist, gestural drawing, loose strokes"
+  background: "white or light gray paper texture, subtle grain"
+  color_scheme: "black ink, gray tones, occasional color accent"
+  composition: "off-center composition, organic feel, illustrative storytelling"
+  negative: "digital art, flat design, geometric shapes, bright colors, computer generated"
+
+sizes:
+  illustration:
+    width: 1024
+    height: 768
+  cover:
+    width: 900
+    height: 383

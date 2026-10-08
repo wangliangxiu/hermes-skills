@@ -1,0 +1,49 @@
+- index: 0
+  type: cover
+  alt: 一只绿色牡丹鹦鹉在笼子里玩耍
+  context: 牡丹鹦鹉行为学入门 ... 【配图：一只绿色牡丹鹦鹉在笼子里玩耍】 每天早上，你家牡丹鹦鹉准时在你枕头边叽叽喳喳叫个不停。 【配图：牡丹鹦鹉特写脸部，红橙色的脸部羽毛非常鲜艳】
+    它们比你想象中聪明得多 2025年，一项研究发现：
+  filename: cover.png
+  size: 900x383
+  width: 900
+  height: 383
+  prompt: 'Cover image for article: 牡丹鹦鹉行为学入门, hand-drawn style, sketch illustration,
+    blue-purple gradient background, cute doodle, simple lines, blue to purple gradient,
+    soft lighting, clean white space, centered subject, informative illustration,
+    clear visual hierarchy'
+  negative: photorealistic, photography, 3D render, dark background, cluttered, low
+    quality
+- index: 1
+  type: illustration_1
+  alt: 牡丹鹦鹉特写脸部，红橙色的脸部羽毛非常鲜艳
+  context: 牡丹鹦鹉行为学入门 【配图：一只绿色牡丹鹦鹉在笼子里玩耍】 每天早上，你家牡丹鹦鹉准时在你枕头边叽叽喳喳叫个不停。 ... 【配图：牡丹鹦鹉特写脸部，红橙色的脸部羽毛非常鲜艳】
+    它们比你想象中聪明得多 2025年，一项研究发现：牡丹鹦鹉具有联想符号学习能力。 【配图：科学家对鹦鹉进行认知测试的场景】
+  filename: illustration_1.png
+  size: 1024x768
+  width: 1024
+  height: 768
+  prompt: 牡丹鹦鹉特写脸部，红橙色的脸部羽毛非常鲜艳. hand-drawn style, sketch illustration, blue-purple
+    gradient background, cute doodle, simple lines. clean lines, hand-drawn feel,
+    minimalist composition, cartoon illustration style. blue to purple gradient, soft
+    lighting, clean white space. blue, purple, soft pink accents, white highlights.
+    centered subject, informative illustration, clear visual hierarchy. 4:3 aspect
+    ratio, high quality illustration
+  negative: photorealistic, photography, 3D render, dark background, cluttered, low
+    quality
+- index: 2
+  type: illustration_2
+  alt: 科学家对鹦鹉进行认知测试的场景
+  context: 里玩耍】 每天早上，你家牡丹鹦鹉准时在你枕头边叽叽喳喳叫个不停。 【配图：牡丹鹦鹉特写脸部，红橙色的脸部羽毛非常鲜艳】 它们比你想象中聪明得多
+    2025年，一项研究发现：牡丹鹦鹉具有联想符号学习能力。 ... 【配图：科学家对鹦鹉进行认知测试的场景】
+  filename: illustration_2.png
+  size: 1024x768
+  width: 1024
+  height: 768
+  prompt: 科学家对鹦鹉进行认知测试的场景. hand-drawn style, sketch illustration, blue-purple gradient
+    background, cute doodle, simple lines. clean lines, hand-drawn feel, minimalist
+    composition, cartoon illustration style. blue to purple gradient, soft lighting,
+    clean white space. blue, purple, soft pink accents, white highlights. centered
+    subject, informative illustration, clear visual hierarchy. 4:3 aspect ratio, high
+    quality illustration
+  negative: photorealistic, photography, 3D render, dark background, cluttered, low
+    quality

@@ -1,0 +1,22 @@
+# 插图风格：🎨 扁平彩色
+# 适合：儿童教育、生活方式、美食类内容
+
+name: "🎨 扁平彩色"
+description: "扁平化设计，几何色块，活泼的蓝橙配色"
+preset: true
+
+prompt_template:
+  style: "flat design illustration, 2D vector art, geometric shapes, vibrant colors"
+  elements: "flat color blocks, simple geometric forms, no gradients, clean edges"
+  background: "solid color background or simple pattern, bright and cheerful"
+  color_scheme: "blue, orange, yellow, green, bright saturated colors, flat shading"
+  composition: "balanced layout, centered subject, playful arrangement"
+  negative: "3D render, photorealistic, gradients, shadows, vintage style"
+
+sizes:
+  illustration:
+    width: 1024
+    height: 768
+  cover:
+    width: 900
+    height: 383

@@ -1,0 +1,22 @@
+# 插图风格：✏️ 手绘蓝紫（Nano Banana 风格）
+# 适合：科普、教程、知识分享类内容
+
+name: "✏️ 手绘蓝紫"
+description: "Nano Banana 手绘风格，蓝紫渐变背景，简约线条画"
+preset: true
+
+prompt_template:
+  style: "hand-drawn style, sketch illustration, blue-purple gradient background, cute doodle, simple lines"
+  elements: "clean lines, hand-drawn feel, minimalist composition, cartoon illustration style"
+  background: "blue to purple gradient, soft lighting, clean white space"
+  color_scheme: "blue, purple, soft pink accents, white highlights"
+  composition: "centered subject, informative illustration, clear visual hierarchy"
+  negative: "photorealistic, photography, 3D render, dark background, cluttered, low quality"
+
+sizes:
+  illustration:
+    width: 1024
+    height: 768
+  cover:
+    width: 900
+    height: 383

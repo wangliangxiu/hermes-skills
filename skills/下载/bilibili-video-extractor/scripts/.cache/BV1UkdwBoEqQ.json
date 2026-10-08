@@ -1,0 +1,58 @@
+{
+  "video_id": "BV1UkdwBoEqQ",
+  "url": "https://www.bilibili.com/video/BV1UkdwBoEqQ/",
+  "mode": "full",
+  "timestamp": "2026-09-23T09:37:31.350309",
+  "info": {
+    "bvid": "BV1UkdwBoEqQ",
+    "aid": 1（已隐去）397,
+    "title": "用codex跑通自媒体运营全流程！告别人工！",
+    "desc": "这期分享的是我真实在用的 Codex 内容运营流程。\n做号最累的，其实不是拍视频。\n而是拍完以后那些又碎、又重复、又不能不做的事情： 看数据、复盘、更新账号策略、写封面标题标签、整理下一次的经验。\n所以我最近把这部分流程交给了 Codex。",
+    "owner": {
+      "name": "珍妮丁丁AI说",
+      "mid": 3546662351931696,
+      "face": "https://i0.hdslb.com/bfs/face/5574c35c4335f10417333a36ebac7bb4e6b5d5d9.jpg"
+    },
+    "stat": {
+      "aid": 1（已隐去）397,
+      "view": 28526,
+      "danmaku": 0,
+      "reply": 53,
+      "favorite": 2738,
+      "coin": 373,
+      "share": 512,
+      "now_rank": 0,
+      "his_rank": 0,
+      "like": 892,
+      "dislike": 0,
+      "evaluation": "",
+      "vt": 0
+    },
+    "duration": 385,
+    "pubdate": 1778158800,
+    "pubdate_str": "2026-05-07 21:00",
+    "pages": [
+      {
+        "cid": 38155389954,
+        "page": 1,
+        "from": "vupload",
+        "part": "用codex跑通自媒体运营全流程！告别人工！",
+        "duration": 385,
+        "vid": "",
+        "weblink": "",
+        "dimension": {
+          "width": 1662,
+          "height": 1080,
+          "rotate": 0
+        },
+        "first_frame": "http://i1.hdslb.com/bfs/storyff/_00000oo4idffckzz52lfjwwagh636yb_firsti.jpg",
+        "ctime": 1778146965,
+        "asr_language": "cmn"
+      }
+    ],
+    "tname": "",
+    "tags": []
+  },
+  "danmaku": [],
+  "comments": []
+}

@@ -168,7 +168,10 @@ def build_chapter(wb, subject, ch):
 
 
 def add_index_links(path, sheet_name, owner, code_col=2):
-    """总表加「细化表（点章名跳转）」列：owner = {章号: (工作簿文件名, 表名)}"""
+    """总表加「细化表（点章名跳转）」列：owner = {章号: (工作簿文件名, 表名, 本章分值)}
+
+    已有行只补链接；总表里没有的章号（如新拆出的章节）自动追加一行，避免“新表没登记”。
+    """
     wb = openpyxl.load_workbook(path)
     ws = wb[sheet_name]
     col = ws.max_column + 1 if ws.cell(1, ws.max_column).value else ws.max_column
@@ -178,19 +181,39 @@ def add_index_links(path, sheet_name, owner, code_col=2):
     c = ws.cell(1, col, '细化表（点章名跳转）')
     style_cell(c, F_HDR, NAVY, CEN)
     n = 0
+    seen = set()
     for r in range(2, ws.max_row + 1):
         b = ws.cell(r, code_col).value
         if not b:
             continue
         code = str(b).split(' ')[0].strip()
         if code in owner:
-            wbf, sheet_title = owner[code]
+            wbf, sheet_title, _score = owner[code]
             cell = ws.cell(r, col, sheet_title)
             cell.hyperlink = "%s#'%s'!A1" % (wbf, sheet_title)
             cell.font = F_LINK
             cell.alignment = CEN
             cell.border = BORDER
+            seen.add(code)
             n += 1
+    # 补齐总表里没有的章号
+    r = ws.max_row + 1
+    while r > 2 and not ws.cell(r - 1, code_col).value:
+        r -= 1
+    for code, (wbf, sheet_title, score) in owner.items():
+        if code in seen:
+            continue
+        ws.cell(r, 1, wbf.split('-')[-1].split('.')[0])   # 阶段列：数学一/英语一/…
+        ws.cell(r, code_col, sheet_title)
+        ws.cell(r, code_col + 2, score or '')
+        cell = ws.cell(r, col, sheet_title)
+        cell.hyperlink = "%s#'%s'!A1" % (wbf, sheet_title)
+        for i in range(1, col + 1):
+            cc = ws.cell(r, i)
+            cc.border = BORDER
+            cc.alignment = CEN if i != code_col + 2 else LEFT
+            cc.font = F_LINK if i == col else F_BODY
+        n += 1
     wb.save(path)
     return n
 
@@ -210,7 +233,8 @@ def main():
         d = json.load(open(m['data'], encoding='utf-8'))
         data[m['workbook']] = (m['subject'], d, m)
         for ch in d['sheets']:
-            owner[ch['id']] = (m['workbook'], ('%s %s' % (ch['id'], ch['name']))[:31])
+            owner[ch['id']] = (m['workbook'], ('%s %s' % (ch['id'], ch['name']))[:31],
+                               ch.get('score', ''))
     for wbf, (subject, d, m) in data.items():
         path = os.path.join(wdir, wbf)
         wb = openpyxl.load_workbook(path)
